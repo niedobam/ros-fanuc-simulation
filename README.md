@@ -6,6 +6,8 @@ In robot's working envelope at random position is spawned an object (in our case
 
 It is based on this [repository](https://github.com/rparak/ROS_Industrial_Simple_Motion_Control).
 
+---
+
 Program steps:
   1. Robot will move to home position
   2. Cube will be spawned at random position in robot's working envelope
