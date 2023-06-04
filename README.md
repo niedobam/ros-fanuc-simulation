@@ -43,6 +43,10 @@ Project was made using [ROS Melodic Morenia](http://wiki.ros.org/melodic#Install
   rosdep install --rosdistro $ROS_DISTRO --ignore-src --from-paths src
   catkin_make
   ```
+* Set all scripts as executable
+  ```bash
+  chmod +x -R src
+  ```
 
 ## Running instructions - Go into project directory
 * In terminal1
