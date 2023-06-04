@@ -33,6 +33,10 @@ Project was made using [ROS Melodic Morenia](http://wiki.ros.org/melodic#Install
   ```bash
   git clone https://github.com/niedobam/ROS-Fanuc-simulation.git
   ```
+* Go into main directory
+```bash
+cd ..
+```
 * Install project with all dependencies
   ```bash
   rosdep update
