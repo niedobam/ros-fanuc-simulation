@@ -4,6 +4,8 @@ This is final project for university course VRM - Programming for robots and man
 
 In robot's working envelope at random position is spawned an object (in our case a cube) to which robot will move. Trajectory of robot's movement is visualised.
 
+It is based on this [repository](https://github.com/rparak/ROS_Industrial_Simple_Motion_Control).
+
 Program steps:
   1. Robot will move to home position
   2. Cube will be spawned at random position in robot's working envelope
