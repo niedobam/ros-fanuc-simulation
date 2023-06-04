@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import sys
 import random
 import rospy
@@ -10,17 +11,24 @@ from moveit_msgs.msg import DisplayTrajectory, RobotState
 from visualization_msgs.msg import Marker
 from copy import deepcopy
 
+
+# Function that generates a random number within the intervals (-0.5, -0.2) and (0.2, 0.5)
+# These intervals were chosen based on achievable robot's reach
 def generate_random_number():
-    # Generate a random number within the intervals (-0.5, -0.2) and (0.2, 0.5)
-    random_number = random.uniform(-0.5, -0.2) if random.randint(0,1) == 0 else random.uniform(0.2, 0.5)
+    if random.randint(0, 1) == 0:
+        random_number = random.uniform(-0.5, -0.2)
+    else:
+        random_number = random.uniform(0.2, 0.5)
     return random_number
 
+# Function for generating list of random x, y and z coordinates
 def generate_random_point_in_reach():
     x = random.uniform(0.2, 0.5)
     y = generate_random_number()
     z = random.uniform(0.1, 0.5)
     return [x, y, z]
 
+# Function that generates a cube in the scene based on random position
 def generate_cube(scene, name, position, size=0.05):
     pose = geometry_msgs.msg.PoseStamped()
     pose.header.frame_id = "base_link"
@@ -29,6 +37,7 @@ def generate_cube(scene, name, position, size=0.05):
     pose.pose.position.z = position[2]
     scene.add_box(name, pose, size=(size, size, size))
 
+# Calculation of the cartesian path from robot's end point to generated cube - returns false if path was not computed successfully else returns computed path
 def cartesian_trajectory(group, home_position, cube_position, orientation, vel_f, acc_f):
     waypoints = []
     w_pose_target = geometry_msgs.msg.Pose()
@@ -46,10 +55,12 @@ def cartesian_trajectory(group, home_position, cube_position, orientation, vel_f
         rospy.loginfo('Path computed successfully.')
     else:
         rospy.loginfo('Path planning failed')
+        return False
     rospy.loginfo('Fraction: %f' % fraction)
     plan = group.retime_trajectory(group.get_current_state(), plan, vel_f, acc_f)
     return plan
 
+# Function that computes and visualises robot trajectory
 def publishTrajectoryLine(plan, fk_service, joint_names, link_name, publisher):
     marker = Marker()
     marker.header.frame_id = "base_link"
@@ -102,12 +113,14 @@ def main():
     w_pose_initial = rospy.wait_for_message('/current_tcp_pose', geometry_msgs.msg.PoseStamped, timeout=None)
     home_position = [w_pose_initial.pose.position.x, w_pose_initial.pose.position.y, w_pose_initial.pose.position.z]
     orientation = [w_pose_initial.pose.orientation.w, w_pose_initial.pose.orientation.x, w_pose_initial.pose.orientation.y, w_pose_initial.pose.orientation.z]
+
     temp_position = home_position
+
     rospy.set_param('object_pos', home_position)
 
-    # Set velocity and acceleration scaling factors
-    vel_scaling_f = 1.0
-    acc_scaling_f = 1.0
+    # Set velocity and acceleration scaling factors - values from 0 to 1
+    vel_scaling_f = 0.5
+    acc_scaling_f = 0.5
     group.set_max_velocity_scaling_factor(vel_scaling_f)
     group.set_max_acceleration_scaling_factor(acc_scaling_f)
 
@@ -116,7 +129,7 @@ def main():
     fk_service = rospy.ServiceProxy('compute_fk', GetPositionFK)
 
     while not rospy.is_shutdown():
-        # Remove previous cube from planning scene
+        # Remove previous cube and marker line from planning scene
         scene.remove_world_object("target_cube")
 
         # Generate random position for the cube and add it to the scene
@@ -144,6 +157,14 @@ def main():
             group.stop()
             group.clear_path_constraints()
             group.clear_pose_targets()
+        else:
+            # Stop the group and clear constraints and targets
+            group.stop()
+            group.clear_path_constraints()
+            group.clear_pose_targets()
+            # Reset robot to home position
+            reset_robot.call()
+            rospy.sleep(0.5)
 
 if __name__ == '__main__':
     moveit_commander.roscpp_initialize(sys.argv)
