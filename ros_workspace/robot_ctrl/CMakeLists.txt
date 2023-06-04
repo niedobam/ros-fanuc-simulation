@@ -166,7 +166,6 @@ catkin_install_python(PROGRAMS
    src/data_collection/read_tcp_pose.py
    src/main/test.py
    src/service/reset_robot.py
-   src/service/set_object.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
