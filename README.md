@@ -34,9 +34,9 @@ Project was made using [ROS Melodic Morenia](http://wiki.ros.org/melodic#Install
   git clone https://github.com/niedobam/ROS-Fanuc-simulation.git
   ```
 * Go into main directory
-```bash
-cd ..
-```
+  ```bash
+  cd ..
+  ```
 * Install project with all dependencies
   ```bash
   rosdep update
