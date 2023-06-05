@@ -15,7 +15,7 @@ Program steps:
   4. Robot trajectory will be calculated
   5. Planned trajectory will be visualized (in RViz "Marker" visualization has to be added)
   6. Robot will move to the center of the spawned object
-  7. Repeat
+  7. Repeat from step 2
 
 ![Screenshot_20230604_102058](https://github.com/niedobam/vrm/assets/127039716/762a2788-a249-44cc-bc1c-31a376fdc0e0)
 
