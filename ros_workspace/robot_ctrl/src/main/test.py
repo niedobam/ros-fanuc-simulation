@@ -129,7 +129,7 @@ def main():
     fk_service = rospy.ServiceProxy('compute_fk', GetPositionFK)
 
     while not rospy.is_shutdown():
-        # Remove previous cube and marker line from planning scene
+        # Remove previous cube from planning scene
         scene.remove_world_object("target_cube")
 
         # Generate random position for the cube and add it to the scene
