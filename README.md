@@ -1,6 +1,6 @@
 # VRM - Final Project
 
-This is final project for university course VRM - Programming for robots and manipulators, at VUT Brno. It is a simple application of [Fanuc CR-7iA](https://www.fanucamerica.com/products/robots/series/collaborative-robot/cr-7ia-l-cobot) robot simulation using [ROS](https://www.ros.org/).
+This is final project for university course VRM - Programming for robots and manipulators at VUT Brno. It is a simple application of [Fanuc CR-7iA](https://www.fanucamerica.com/products/robots/series/collaborative-robot/cr-7ia-l-cobot) robot simulation using [ROS](https://www.ros.org/).
 
 In robot's working envelope at random position is spawned an object (in our case a cube) to which robot will move. Trajectory of robot's movement is visualised.
 
