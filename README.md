@@ -10,11 +10,12 @@ It is based on this [repository](https://github.com/rparak/ROS_Industrial_Simple
 
 Program steps:
   1. Robot will move to home position
-  2. Cube will be spawned at random position in robot's working envelope
-  3. Robot trajectory will be calculated
-  4. Planned trajectory will be visualized (in RViz "Marker" visualization has to be added)
-  5. Robot will move to the center of the spawned object
-  6. Repeat
+  2. All leftover objects will be removed from the scene
+  3. Cube will be spawned at random position in robot's working envelope
+  4. Robot trajectory will be calculated
+  5. Planned trajectory will be visualized (in RViz "Marker" visualization has to be added)
+  6. Robot will move to the center of the spawned object
+  7. Repeat
 
 ![Screenshot_20230604_102058](https://github.com/niedobam/vrm/assets/127039716/762a2788-a249-44cc-bc1c-31a376fdc0e0)
 
