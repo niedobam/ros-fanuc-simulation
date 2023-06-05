@@ -13,7 +13,8 @@ Program steps:
   2. Cube will be spawned at random position in robot's working envelope
   3. Robot trajectory will be calculated
   4. Planned trajectory will be visualized (in RViz "Marker" visualization has to be added)
-  5. Repeat
+  5. Robot will move to the center of the spawned object
+  6. Repeat
 
 ![Screenshot_20230604_102058](https://github.com/niedobam/vrm/assets/127039716/762a2788-a249-44cc-bc1c-31a376fdc0e0)
 
