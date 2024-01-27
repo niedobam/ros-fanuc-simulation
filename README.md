@@ -37,7 +37,7 @@ Project was made using [ROS Melodic Morenia](http://wiki.ros.org/melodic#Install
   ```
 * Download project source files
   ```bash
-  git clone https://github.com/niedobam/ROS-Fanuc-simulation.git
+  git clone https://github.com/niedobam/ros-fanuc-simulation.git
   ```
 * Go into main directory
   ```bash
